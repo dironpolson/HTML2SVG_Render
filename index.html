@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+</head>
+<body>
+    <!-- Your HTML content to be converted to SVG -->
+    <div id="content">
+        <h1>Hello, World!</h1>
+        <p>This is an example HTML content</p>
+    </div>
+
+    <!-- SVG container (initially hidden) -->
+    <div id="svg-container" style="display: none;"></div>
+
+    <script>
+        // Use html2canvas to convert the HTML content to SVG
+        html2canvas(document.getElementById('content')).then(function(canvas) {
+            // Convert the canvas to SVG
+            const svgData = canvas.toDataURL("image/svg+xml");
+
+            // Create an image element with the SVG data
+            const svgImage = new Image();
+            svgImage.src = svgData;
+
+            // Append the SVG image to the SVG container and display it
+            const svgContainer = document.getElementById('svg-container');
+            svgContainer.appendChild(svgImage);
+            svgContainer.style.display = 'block';
+
+            // Hide the original content container
+            document.getElementById('content').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
